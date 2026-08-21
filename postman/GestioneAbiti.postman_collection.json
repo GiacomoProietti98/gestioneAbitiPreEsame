@@ -1,0 +1,178 @@
+{
+	"info": {
+		"_postman_id": "c2c3bf0c-9656-4858-8f65-ee9b7f34fde2",
+		"name": "GestioneAbiti",
+		"description": "Endpoint del backend di gestione abiti (Node.js + Express + Sequelize + MariaDB).\n\nGli id usati nelle richieste corrispondono ai dati di sql/seed.sql: capi 1-8 e categorie 1-8. Le richieste di cancellazione puntano all'id 9, cioe' la risorsa creata dalle rispettive POST: esegui prima la POST e poi la DELETE.\n\nL'host e' nella variabile di collection baseUrl.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "49859337"
+	},
+	"item": [
+		{
+			"name": "Categorie",
+			"item": [
+				{
+					"name": "Get all categorie",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/api/categorie"
+					},
+					"response": []
+				},
+				{
+					"name": "Post create categoria",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\": \"Abiti da sera\",\n    \"descrizione\": \"Abiti lunghi e smoking\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseUrl}}/api/categorie"
+					},
+					"response": []
+				},
+				{
+					"name": "Del categoria",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "{{baseUrl}}/api/categorie/9"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Capi",
+			"item": [
+				{
+					"name": "Get all capi",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/api/capi"
+					},
+					"response": []
+				},
+				{
+					"name": "Post crea capo",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\": \"Cappello di paglia\",\n    \"descrizione\": \"Paglia intrecciata, tesa larga\",\n    \"prezzo\": 24.90,\n    \"taglia\": \"S\",\n    \"quantita\": 10,\n    \"categorieIds\": [7]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseUrl}}/api/capi"
+					},
+					"response": []
+				},
+				{
+					"name": "Get capo per id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/api/capi/1"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Search by nome",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/capi/search?q=camicia",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"capi",
+								"search"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "camicia"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get capi disponibili",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/api/capi/disponibili"
+					},
+					"response": []
+				},
+				{
+					"name": "Put modifica capo",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"prezzo\": 21.90,\n    \"quantita\": 12\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseUrl}}/api/capi/1"
+					},
+					"response": []
+				},
+				{
+					"name": "Put cambia categorie del capo",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"categorieIds\": [1, 8]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseUrl}}/api/capi/1"
+					},
+					"response": []
+				},
+				{
+					"name": "Del capo",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "{{baseUrl}}/api/capi/9"
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:3000"
+		}
+	]
+}
